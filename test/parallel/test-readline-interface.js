@@ -27,6 +27,17 @@ function isWarned(emitter) {
   var rli;
   var called;
 
+  // disable history
+  fi = new FakeInput();
+  rli = new readline.Interface({ input: fi, output: fi, terminal: terminal,
+                              historySize: 0 });
+  assert.equal(rli.historySize, 0);
+
+  // default history size 30
+  fi = new FakeInput();
+  rli = new readline.Interface({ input: fi, output: fi, terminal: terminal});
+  assert.equal(rli.historySize, 30);
+
   // sending a full line
   fi = new FakeInput();
   rli = new readline.Interface({ input: fi, output: fi, terminal: terminal });
